@@ -6,6 +6,9 @@ type Currency struct {
 	precision byte
 }
 
+// ExchangeRate represents the exchange rate between two currencies
+type ExchangeRate Decimal
+
 // ErrInvalidCurrencyCode is returned if the currency code is malformed.
 const ErrInvalidCurrencyCode = Error("invalid currency code")
 

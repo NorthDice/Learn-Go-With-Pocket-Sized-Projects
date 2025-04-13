@@ -12,8 +12,8 @@ func TestConvert(t *testing.T) {
 		validate func(t *testing.T, got Amount, err error)
 	}{
 		"34.98 USD to EUR": {
-			amount: Amount{},
-			to:     Currency{},
+			amount: mustParseAmount(t, "34.98", "USD"),
+			to:     mustParseCurrency(t, "EUR"),
 			validate: func(t *testing.T, got Amount, err error) {
 				if err != nil {
 					t.Errorf("expected no error, got %v", err.Error())
