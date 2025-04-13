@@ -1,4 +1,4 @@
-package main
+package pocketLog
 
 // Level represents a log level
 type Level byte
