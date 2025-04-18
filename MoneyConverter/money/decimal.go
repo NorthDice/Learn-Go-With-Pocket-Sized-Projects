@@ -44,6 +44,19 @@ func ParseDecimal(value string) (Decimal, error) {
 
 	return dec, nil
 }
+func (d *Decimal) String() string {
+	if d.precision == 0 {
+		return fmt.Sprintf("%d", d.subunits)
+	}
+
+	centsPerUnit := pow10(d.precision)
+	frac := d.subunits % centsPerUnit
+	integer := d.subunits / centsPerUnit
+
+	decimalFormat := "%d.%0" + strconv.Itoa(int(d.precision)) + "d"
+
+	return fmt.Sprintf(decimalFormat, integer, frac)
+}
 
 // simplifies removes trailing zeroes - as long as they're on the right side of the decimal separator.
 func (d *Decimal) simplify() {

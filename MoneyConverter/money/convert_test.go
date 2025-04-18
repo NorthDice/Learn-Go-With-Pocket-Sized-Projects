@@ -18,7 +18,7 @@ func TestConvert(t *testing.T) {
 				if err != nil {
 					t.Errorf("expected no error, got %v", err.Error())
 				}
-				expected := Amount{}
+				expected := mustParseAmount(t, "69.96", "EUR")
 				if !reflect.DeepEqual(got, expected) {
 					t.Errorf("expected %v, got %v", expected, got)
 				}

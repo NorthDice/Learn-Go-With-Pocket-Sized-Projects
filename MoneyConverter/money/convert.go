@@ -2,7 +2,13 @@ package money
 
 // Convert applies the change rate to convert an amount to a targetCurrency currency
 func Convert(amount Amount, to Currency) (Amount, error) {
-	return Amount{}, nil
+	// Convert to the target currency applying the fetched change rate.
+	convertedValue := applyExchangeRate(amount, to, ExchangeRate{subunits: 2, precision: 0})
+
+	if err := convertedValue.validate(); err != nil {
+		return Amount{}, err
+	}
+	return convertedValue, nil
 }
 
 // applyExchangeRate returns a new Amount representing the input multiplied by the rate.
